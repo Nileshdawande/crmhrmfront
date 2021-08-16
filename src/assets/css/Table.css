@@ -1,0 +1,25 @@
+.MuiTableCell-root{  font-family: "Poppins", sans-serif !important;}
+.tableWp table {  border-collapse: collapse;margin: 0;padding: 0;width: 100%;table-layout: fixed;}   
+.tableWp table tr { padding: .35em;}  
+/* .tableWp table th{ font-size: 14px; font-weight:normal; background-color: #fff;}  */
+.tableWp table th,.tableWp table td {padding:15px 5px;text-align: left; color:#4a4848; font-size:14px;}  
+.tableWp table tr:nth-child(even){background-color: #f1f2f4;}
+.tableWp table tr:hover {background-color: #ddd;}
+.tableWp .card { margin-top: 10px;padding: 15px;box-sizing: border-box;border-radius: 2px; background-clip: padding-box; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);}
+.tableWp  .MuiTableCell-root{ /*width:25%;*/border-bottom:none;font-family: "Poppins", sans-serif; font-size:14px!important; }
+.tableWp  .MuiPaper-elevation2{ box-shadow:none;}
+ .MuiButtonBase-root.MuiIconButton-colorInherit .MuiIcon-root{ color: #818698!important;}
+ /* .MuiIcon-root{ color:red!important;}
+ .material-icons{ color:red!important;} */
+ .MuiTableCell-body{ color:#4a4848!important;}
+ /* .MuiToolbar-regular,.MuiToolbar-gutters,.MTableToolbar-root-5{ display:none!important; height:inherit!important;} */
+ .MuiToolbar-regular{ background:#d8d8d8!important; width:98.6%;}
+ .CalendarIcn{ color:#222!important;}
+ .MuiCheckbox-colorSecondary.Mui-checked{ color:#4c8db5!important;}
+ .btn-secondary{background-color:#4c8db5!important;}
+ @media (min-width: 600px)
+{
+.MuiToolbar-regular {
+    min-height:0px!important;
+}
+}

@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.branding
+{
+   text-align:center;
+}
+
+.branding h1
+{
+    font-family: 'Alata', sans-serif;
+    font-size:50px;
+    font-weight:bold;
+    padding:0px;
+    margin:0px;
+}
+
+.branding p
+{
+    font-weight:normal;
+    padding:0px;
+    margin:0px;
+    font-family: 'Alata', sans-serif;
+    letter-spacing:3px;
+    word-spacing:5px;
+    color:#848484;
+}
+
+label
+{
+   font-family: 'Alata', sans-serif;
+   font-size:16px !important;
+}
+
+
+.welcome_image
+{
+   background-image:url("../img/welcome.jpg");
+   background-size:cover !important;
+}
+
+.signup_input
+{
+   border-radius:0px !important;
+   padding-left:0px !important;
+   border-top:none !important;
+   border-left:none !important;
+   border-right:none !important;
+}
+
+.signup_input:focus
+{
+   box-shadow:none !important;
+}
+
+.submit_btn
+{
+   background-color:#fc6102 !important;
+   color:white;
+}

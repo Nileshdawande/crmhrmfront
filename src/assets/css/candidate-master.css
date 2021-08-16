@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.welcome_input
+{
+   padding-left:0px !important;
+   border-top:0px !important;
+   border-left:0px !important;
+   border-right:0px !important;
+}
+
+.welcome_input:focus
+{
+   box-shadow:none !important;
+}
