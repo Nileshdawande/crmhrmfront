@@ -28,7 +28,7 @@ const AddTaskTypeMaster =()=>
 
         return (
             <div className="ms-content-wrapper">
-              <CustomRequestLoader/>
+              
                 <div className="row">
                     <div className="col-md-1"></div>
                       <div className="col-md-10">

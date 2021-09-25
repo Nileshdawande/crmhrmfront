@@ -1,14 +1,19 @@
 import React, { useState,useEffect } from 'react';
-import axios from "axios";
-import useAajaxhooks from "../Customhooks/useAajaxhooks";
 import ApiUrl from "../ServerApi/Api";
+import CustomRequestLoader from "./CustomRequestLoader";
+import axios from "axios";
+import $ from "jquery";
 
 const Leadsourcecontent =()=> {
 
-  let [lead,setLead]  = useState([]);
-
   const urlData = ApiUrl+"/lead_source";
-  const {addData,notice} = useAajaxhooks();
+  let [lead,setLead]  = useState([]);
+  const [loader,setLoader] = useState(false);
+  const [msg,setMsg] = useState("");
+  const [inputData,setInputData] = useState({
+    lead_source_name:"",
+    lead_source_parent:""
+  });
 
   useEffect(()=>{
       getCategory();
@@ -29,16 +34,61 @@ const Leadsourcecontent =()=> {
 
   const createLeadSource=(event)=>
   {
-      const ajax = addData(event,urlData);
-      Promise.all([ajax]).then(()=>{
-        getCategory();
+      event.preventDefault();
+      setLoader(true);
+      const ajax = axios({
+        method:"POST",
+        url:urlData,
+        data:{
+          ...inputData
+        }
       });
+
+      ajax.then((response)=>{
+        setLoader(false);
+        $(".notice").removeClass("d-none");
+        setMsg("Lead source created !");
+        removeMsg();
+        getCategory();
+        setInputData({
+          lead_source_name:"",
+          lead_source_parent:""
+        });
+      });
+
+      ajax.catch((error)=>{
+        if(error)
+        {
+          $(".notice").removeClass("d-none");
+          setMsg("Lead source exists !");
+          setLoader(false);
+          removeMsg();
+        }
+      });
+  }
+
+  const handleInput=(event)=>
+  {
+     const name = event.target.name;
+     const val  = event.target.value;
+     setInputData({...inputData,[name]:val});
+  }
+
+  const removeMsg=()=>
+  {
+     setTimeout(()=>{
+       $(".notice").addClass("d-none");
+       setMsg("");
+     },3000);
   }
 
 
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
+                  {
+                    loader&&<CustomRequestLoader/>
+                  }
                     <div className="col-md-1"></div>
                     <div className="col-md-10">
                         <div className="ms-panel">
@@ -49,12 +99,12 @@ const Leadsourcecontent =()=> {
                                 <form onSubmit={createLeadSource}>
                                     <div className="form-group">
                                         <label htmlFor="exampleEmail">Lead source</label>
-                                        <input type="text" className="form-control" placeholder="Lead source" name="lead_source_name" required="required" />
+                                        <input type="text" className="form-control" placeholder="Lead source" name="lead_source_name" value={inputData.lead_source_name} onChange={handleInput} required="required" />
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="exampleSelect">Lead source parent</label>
-                                  <select className="form-control" name="lead_source_parent" >
+                                  <select className="form-control" name="lead_source_parent" value={inputData.lead_source_parent} onChange={handleInput} >
                                     <option value="">Select parent category</option>
                                     {
                                       lead.map((data)=>
@@ -65,7 +115,7 @@ const Leadsourcecontent =()=> {
                                     </div>
 
                                     <div className="alert alert-danger rounded-0  text-center font-weight-bold notice d-none">
-                                    {notice}
+                                    {msg}
                                     </div>
                                   <button type="submit" className="btn btn-primary rounded-0 my-2 create_btn" status="insert">
                                       Submit

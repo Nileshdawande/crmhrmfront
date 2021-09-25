@@ -99,7 +99,7 @@ class PmstopNav extends Component {
 
              if(url === "crm")
              {
-               window.location = "/designation-master";
+               window.location = "/crm-dashboard";
              }
 
              if(url === "hrms")

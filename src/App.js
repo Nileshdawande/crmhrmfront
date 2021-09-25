@@ -24,7 +24,7 @@ import Flaticons from './components/pages/Flaticons';
 import Fontawesome from './components/pages/Fontawesome';
 import Formelements from './components/pages/Formelements';
 
-
+import CrmDashboard from './components/pages/CrmDashboard';
 import Designationmasterelement from './components/pages/Designationmasterelement';
 import Showdesignation from './components/pages/Showdesignationelement';
 import Dipartmentmasterelement from './components/pages/Dipartmentmasterelement';
@@ -271,6 +271,7 @@ function App() {
         <Route path="/web-analytics" component={Webanalytics} />
         { access === "crm" && role=== "management" &&
           <>
+        <Route path="/crm-dashboard" component={CrmDashboard} />
         <Route path="/designation-master" component={Designationmasterelement} />
         <Route path="/show-designation" component={Showdesignation} />
         <Route path="/dipartment-master" component={Dipartmentmasterelement} />

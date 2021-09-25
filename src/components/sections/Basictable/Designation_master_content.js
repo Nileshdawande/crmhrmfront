@@ -4,6 +4,7 @@ import useGetUpdatehooks from "../Customhooks/useGetUpdatehooks";
 import CustomLoader from "./CustomLoader";
 import ApiUrl from "../ServerApi/Api";
 
+
 const Designation_master_content =()=>
 {
 
@@ -19,7 +20,7 @@ const Designation_master_content =()=>
           <div className="ms-content-wrapper">
               <div className="row">
                   <div className="col-md-12">
-                      <div className="ms-panel">
+                      <div className="ms-panel mat-table">
                         {find !== true ? <CustomLoader/> :
                         <MaterialTable
                           title="Designation master"

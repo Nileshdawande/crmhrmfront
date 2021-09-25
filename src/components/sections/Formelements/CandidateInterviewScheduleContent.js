@@ -83,7 +83,7 @@ const CandidateInterviewScheduleContent=()=>
       const handleAttachment=(event)=>
       {
          const input = event.target.files[0];
-         if(input.type == "image/jpeg" || input.type == "image/png" || input.type == "image/jpg" || input.type == "image/gif")
+         if(input.type === "image/jpeg" || input.type === "image/png" || input.type === "image/jpg" || input.type === "image/gif")
          {
            setImageError("");
            const url = URL.createObjectURL(input);

@@ -83,7 +83,7 @@ const UserLoginContent = (props) => {
 
                 if(userData.url === "crm")
                 {
-                   window.location = "/designation-master";
+                   window.location = "/crm-dashboard";
                 }
 
                 if(userData.url === "hrms")

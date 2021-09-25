@@ -78,12 +78,18 @@ const ShowEmployeeSalaryTable=()=>
 
                                                <td align="center">
                                                  <select className="form-control"  name="month_of_year" value={final_data.month_of_year} onChange={(event)=>{handleInput(event,index)}} disabled="disabled">
-                                                   <option>2020</option>
-                                                   <option>2021</option>
-                                                   <option>2022</option>
-                                                   <option>2023</option>
-                                                   <option>2024</option>
-                                                   <option>2025</option>
+                                                   <option>Jan</option>
+                                                   <option>Feb</option>
+                                                   <option>Mar</option>
+                                                   <option>Apr</option>
+                                                   <option>May</option>
+                                                   <option>Jun</option>
+                                                   <option>Jul</option>
+                                                   <option>Aug</option>
+                                                   <option>Sept</option>
+                                                   <option>Oct</option>
+                                                   <option>Nov</option>
+                                                   <option>Des</option>
                                                  </select>
 
                                              </td>

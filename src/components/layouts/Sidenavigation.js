@@ -87,24 +87,15 @@ class Sidenavigation extends Component {
                     {/* Navigation */}
 
                 <ul className="accordion ms-main-aside fs-14" id="side-nav-accordion">
-                        {/* Dashboard */}
 
-                        <li className="menu-item">
-                            <Link to="#" > <span><i className="material-icons fs-16" >dashboard</i>Dashboard </span>
-                            </Link>
-                            {/**
-                            <ul id="dashboard" className="collapse" aria-labelledby="dashboard" data-parent="#side-nav-accordion">
-                                <li> <Link to="/">Costic</Link>
-                                </li>
-                            </ul>
-                            **/}
-                        </li>
-                        {/* /Dashboard */}
-                        {/* product */}
-
-
-                    { this.state.access === "crm" && this.state.role === "management" &&
+                    {
+                      this.state.access === "crm" && this.state.role === "management" &&
                           <>
+                          <li className="menu-item">
+                              <Link to="/crm-dashboard" >
+                                <span><i className="material-icons fs-16" >dashboard</i>Dashboard</span>
+                              </Link>
+                          </li>
                         <li className="menu-item">
                             <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Designation master</span>
                             </Link>

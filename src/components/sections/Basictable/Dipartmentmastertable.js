@@ -4,6 +4,7 @@ import useGetUpdatehooks from "../Customhooks/useGetUpdatehooks";
 import CustomLoader from "./CustomLoader";
 import ApiUrl from "../ServerApi/Api";
 
+
 const Dipartmentmastertable=()=>
 {
 

@@ -1,17 +1,18 @@
 import React,{useState,useEffect} from 'react';
 import axios from "axios";
-import useAajaxhooks from "../Customhooks/useAajaxhooks";
 import ApiUrl from "../ServerApi/Api";
 import CustomRequestLoader from "./CustomRequestLoader";
+import $ from "jquery";
 
 const EmployeeAllocationContent=()=>
 {
 
       const urlData = ApiUrl+"/emp-allocation";
-      const {addData,notice} = useAajaxhooks();
 
+       const [msg,setMsg] = useState("");
        const [employeeName,setEmployeeName] = useState([]);
        const [departmentName,setDepartmentName] = useState([]);
+       const [filterDepartment,setfilterDepartment] = useState([]);
        const [designationName,setDesignationName] = useState([]);
        const [branchMasterName,setBranchMasterName] = useState([]);
        const [loader,setLoader] = useState(false);
@@ -29,43 +30,52 @@ const EmployeeAllocationContent=()=>
        });
 
        useEffect(()=>{
-             const ajax1 = axios({
-               method:"GET",
-               url:ApiUrl+"/emp-master"
-             });
+            if(branchMasterName.length === 0)
+            {
+              const ajax1 = axios({
+                method:"GET",
+                url:ApiUrl+"/emp-master"
+              });
 
-             const ajax2 = axios({
-               method:"GET",
-               url:ApiUrl+"/employee-department"
-             });
+              const ajax2 = axios({
+                method:"GET",
+                url:ApiUrl+"/employee-department"
+              });
 
 
-             const ajax3 = axios({
-               method:"GET",
-               url:ApiUrl+"/employee-designation"
-             });
+              const ajax3 = axios({
+                method:"GET",
+                url:ApiUrl+"/employee-designation"
+              });
 
-             const ajax4 = axios({
-               method:"GET",
-               url:ApiUrl+"/softlabs-branch-master"
-             });
+              const ajax4 = axios({
+                method:"GET",
+                url:ApiUrl+"/softlabs-branch-master"
+              });
 
-             Promise.all([ajax1,ajax2,ajax3,ajax4]).then((response)=>{
-               const employee_res = response[0].data.data;
-               const department_res = response[1].data.data;
-               const designation_res = response[2].data.data;
-               const branch_res = response[3].data.data;
+              Promise.all([ajax1,ajax2,ajax3,ajax4]).then((response)=>{
+                const employee_res = response[0].data.data;
+                const department_res = response[1].data.data;
+                const designation_res = response[2].data.data;
+                const branch_res = response[3].data.data;
 
-               setEmployeeName(employee_res);
-               setDepartmentName(department_res);
-               setDesignationName(designation_res);
-               setBranchMasterName(branch_res);
+                setEmployeeName(employee_res);
+                setDepartmentName(department_res);
+                setDesignationName(designation_res);
+                setBranchMasterName(branch_res);
+                const depart_id = employee_res[0].department_id;
 
-               setInputData({...inputData,employee_id:employee_res[0].id,department_id:department_res[0].id,designation_id:designation_res[0].id,branch_id:branch_res[0].id});
+                setInputData({...inputData,employee_id:employee_res[0].id,department_id:depart_id,designation_id:designation_res[0].id,branch_id:branch_res[0].id});
 
-             });
+                const newData = department_res.filter((data)=>{
+                    return data.id === depart_id;
+                });
 
-       },[]);
+                setfilterDepartment(newData);
+
+              });
+            }
+       },[inputData,branchMasterName.length]);
 
 
        const inputDataHandle=(event)=>
@@ -73,9 +83,14 @@ const EmployeeAllocationContent=()=>
            const name = event.target.name;
            const val  = event.target.value;
 
-           if(name !== "deduction" && name !== "net_salary" && name !== "gross_salary")
+           if(name !== "deduction" && name !== "net_salary" && name !== "gross_salary" && name !== "employee_id")
            {
              setInputData({...inputData,[name]:val});
+           }
+
+           else if(name === "employee_id")
+           {
+               HandleDepartmentFilter(name,val);
            }
 
            else if(name === "net_salary")
@@ -135,28 +150,54 @@ const EmployeeAllocationContent=()=>
            });
 
            ajax.then((response)=>{
-             console.log(response);
+             $(".notice").removeClass("d-none");
+             setMsg("Employee allocation created !");
+             removeMsg();
              setLoader(false);
              setInputData({
-               employee_id:"",
+               ...inputData,
                date_of_allocation:"",
-               designation_id:"",
-               department_id:"",
-               branch_id:"",
                gross_salary:0,
                deduction:0,
-               net_salary:0,
-               allocation_type:"initial"
+               net_salary:0
              });
            });
 
            ajax.catch((error)=>{
              if(error)
              {
+               $(".notice").removeClass("d-none");
+               setMsg("Employee allocation exists !");
+               removeMsg();
                setLoader(false);
              }
            });
 
+       }
+
+       const HandleDepartmentFilter=(name,val)=>
+       {
+
+          const emp_data = employeeName.filter((item) => {
+            return Number(val) === item.id;
+          });
+
+
+          const newData = departmentName.filter((item) =>
+          {
+            return item.id === emp_data[0].department_id;
+          });
+          console.log(newData);
+          setInputData({...inputData,[name]:val,department_id:newData[0].id});
+          setfilterDepartment(newData);
+       }
+
+       const removeMsg=()=>
+       {
+          setTimeout(()=>{
+            $(".notice").addClass("d-none");
+            setMsg("");
+          },3000);
        }
 
         return (
@@ -203,7 +244,7 @@ const EmployeeAllocationContent=()=>
                                    <label>Department name</label>
                                    <select className="form-control" name="department_id" value={inputData.department_id} onChange={inputDataHandle}>
                                    {
-                                      departmentName.map((final_data)=>(
+                                      filterDepartment.map((final_data)=>(
                                         <option key={final_data.id} value={final_data.id}>{final_data.department_name}</option>
                                       ))
                                    }
@@ -273,7 +314,7 @@ const EmployeeAllocationContent=()=>
                                 </form>
 
                                 <div className="alert alert-danger rounded-0 p-0 mt-2 d-none notice">
-                                <h6 className="p-0 m-0 mt-1 text-center">{notice}</h6>
+                                <h6 className="p-0 m-0 mt-1 text-center">{msg}</h6>
                                 </div>
 
                             </div>

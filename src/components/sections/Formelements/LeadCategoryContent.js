@@ -1,16 +1,73 @@
-import React from 'react';
-import useAajaxhooks from "../Customhooks/useAajaxhooks";
+import React,{useState} from 'react';
 import ApiUrl from "../ServerApi/Api";
+import CustomRequestLoader from "./CustomRequestLoader";
+import axios from "axios";
+import $ from "jquery";
 
 const  LeadCategoryContent=()=> {
 
 
     const urlData = ApiUrl+"/category";
-    const {addData,notice} = useAajaxhooks();
+    const [loader,setLoader] = useState(false);
+    const [msg,setMsg] = useState("");
+    const [inputData,setInputData] = useState({
+      category:"",
+    });
+
+    const createLeadCategory=(event)=>
+    {
+        event.preventDefault();
+        setLoader(true);
+        const ajax = axios({
+          method:"POST",
+          url:urlData,
+          data:{
+            ...inputData
+          }
+        });
+
+        ajax.then((response)=>{
+          setLoader(false);
+          $(".notice").removeClass("d-none");
+          setMsg("Category created !");
+          removeMsg();
+          setInputData({
+            category:"",
+          });
+        });
+
+        ajax.catch((error)=>{
+          if(error)
+          {
+            $(".notice").removeClass("d-none");
+            setMsg("Category exists !");
+            setLoader(false);
+            removeMsg();
+          }
+        });
+    }
+
+    const handleInput=(event)=>
+    {
+       const name = event.target.name;
+       const val  = event.target.value;
+       setInputData({...inputData,[name]:val});
+    }
+
+    const removeMsg=()=>
+    {
+       setTimeout(()=>{
+         $(".notice").addClass("d-none");
+         setMsg("");
+       },3000);
+    }
 
         return (
             <div className="ms-content-wrapper">
                 <div className="row">
+                  {
+                    loader&&<CustomRequestLoader/>
+                  }
                     <div className="col-md-1"></div>
 
                     <div className="col-md-10">
@@ -19,10 +76,10 @@ const  LeadCategoryContent=()=> {
                                 <h6>Category master</h6>
                             </div>
                             <div className="ms-panel-body">
-                                <form onSubmit={(event)=>{addData(event,urlData)}}>
+                                <form onSubmit={createLeadCategory}>
                                     <div className="form-group">
                                         <label htmlFor="exampleEmail">Category</label>
-                                        <input type="text" name="category" className="form-control" id="exampleEmail" placeholder="Website" />
+                                        <input type="text" className="form-control" name="category" value={inputData.category} onChange={handleInput}  placeholder="Website" />
                                     </div>
 
                                     <div className="form-group">
@@ -30,7 +87,7 @@ const  LeadCategoryContent=()=> {
                                     </div>
 
                                     <div className="alert alert-danger rounded-0 text-center notice d-none">
-                                        {notice}
+                                        {msg}
                                     </div>
 
                                 </form>
