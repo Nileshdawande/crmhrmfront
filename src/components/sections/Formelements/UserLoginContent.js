@@ -20,7 +20,7 @@ const UserLoginContent = (props) => {
         {
           //window.location.href
 
-          const complete_url = "https://www.pms.com".split("/");
+          const complete_url = "https://www.hrms.com".split("/");
           let check_url = "";
 
           if(complete_url[2].indexOf("crm") !== -1)
