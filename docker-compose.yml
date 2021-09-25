@@ -9,7 +9,7 @@ services:
       - NODE_ENV=production
     command: npm start
     ports:
-      - 15000:3000
-    tty: true
+      - 10050:3000
+    tty: true  
     volumes:
       - .:/app
