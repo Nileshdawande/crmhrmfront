@@ -96,8 +96,9 @@ class Sidenavigation extends Component {
                                 <span><i className="material-icons fs-16" >dashboard</i>Dashboard</span>
                               </Link>
                           </li>
+
                         <li className="menu-item">
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Designation master</span>
+                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>All master</span>
                             </Link>
                             <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
                             <li className="menu-item" >
@@ -111,15 +112,8 @@ class Sidenavigation extends Component {
                                 Show Designation
                                 </Link>
                             </li>
-                            </ul>
-                        </li>
-
 
                             <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Department master</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-                            < li className="menu-item" >
                             <Link to="/dipartment-master">
                             Add Department
                             </Link>
@@ -130,13 +124,6 @@ class Sidenavigation extends Component {
                             Show Department
                             </Link>
                             </li>
-                            </ul>
-                            </li>
-
-                            <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Requirement</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
 
                             <li className="menu-item" >
                             <Link to="/requirement-type">
@@ -149,14 +136,6 @@ class Sidenavigation extends Component {
                             Show Requirement
                             </Link>
                             </li>
-                            </ul >
-                            </li>
-
-
-                            <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Leadstatus</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
 
                             <li className="menu-item" >
                             <Link to="/lead-status">
@@ -169,13 +148,6 @@ class Sidenavigation extends Component {
                             Show lead status
                             </Link>
                             </li>
-                            </ul >
-                            </li>
-
-                            <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Interaction method</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
 
                             <li className="menu-item" >
                             <Link to="/interactionmethod">
@@ -188,123 +160,86 @@ class Sidenavigation extends Component {
                             Show interaction
                             </Link>
                             </li>
-                            </ul >
+
+                            <li className="menu-item" >
+                                <Link to="/lead-source">
+                               Add Lead source
+                                </Link>
                             </li>
-
-                            <li className="menu-item" >
-                                <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Lead source</span>
-                                </Link>
-                                <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-
-                                < li className="menu-item" >
-                                    <Link to="/lead-source">
-                                   Add Lead source
-                                    </Link>
-                                </li>
-                                < li className="menu-item" >
-                                <Link to="/show-lead-source">
-                                   Show Lead source
-                                </Link>
-                                </li>
-                                </ul >
-                            </li>
-
-                            <li className="menu-item" >
-                                <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Lead category</span>
-                                </Link>
-                                <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-                                  < li className="menu-item" >
-                                      <Link to="/lead-category">
-                                     Add Lead category
-                                      </Link>
-                                  </li>
-
-                                < li className="menu-item" >
-                                <Link to="/show-lead-category">
-                                   Show Lead category
-                                </Link>
-                                </li>
-                                </ul >
-                            </li>
-
-                            <li className="menu-item" >
-                                <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Company type</span>
-                                </Link>
-                                <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-
-                                <li className="menu-item" >
-                                <Link to="/add-companytype">
-                                   Add company type
-                                </Link>
-                                </li>
-
-                                <li className="menu-item" >
-                                <Link to="/show-companytype">
-                                   Show company type
-                                </Link>
-                                </li>
-
-                                </ul >
-                            </li >
-
-                            <li className="menu-item" >
-                                 <Link to="/contacts" className=""> <span><i className="material-icons fs-16">input</i>Add lead</span>
-                                 </Link>
-                             </li>
-
-
-                            <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Reports</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
-
-                            <li className="menu-item" >
-                            <Link to="/lead-report">
-                            Lead reports
+                            < li className="menu-item" >
+                            <Link to="/show-lead-source">
+                               Show Lead source
                             </Link>
                             </li>
 
                             <li className="menu-item" >
-                            <Link to="/followup-report">
-                            Followup reports
-                            </Link>
-                            </li>
-                            </ul >
+                                <Link to="/lead-category">
+                               Add Lead category
+                                </Link>
                             </li>
 
-                            <li className="menu-item" >
-                            <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Contract</span>
-                            </Link>
-                            <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
+                          < li className="menu-item" >
+                          <Link to="/show-lead-category">
+                             Show Lead category
+                          </Link>
+                          </li>
 
-                            <li className="menu-item" >
-                            <Link to="contract">Add contract</Link>
-                            </li>
+                          <li className="menu-item" >
+                          <Link to="/add-companytype">
+                             Add company type
+                          </Link>
+                          </li>
 
-                            <li className="menu-item" >
-                            <Link to="show-contract">Show contract</Link>
-                            </li>
+                          <li className="menu-item" >
+                          <Link to="/show-companytype">
+                             Show company type
+                          </Link>
+                          </li>
 
-                            </ul >
-                            </li>
+                          <li className="menu-item" >
+                          <Link to="contract">Add contract</Link>
+                          </li>
 
-                            <li className="menu-item">
-                              <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Project</span>
-                              </Link>
-                              <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
+                          <li className="menu-item" >
+                          <Link to="show-contract">Show contract</Link>
+                          </li>
 
-                              <li className="menu-item" >
-                              <Link to="project">Add project</Link>
-                              </li>
+                          <li className="menu-item" >
+                          <Link to="project">Add project</Link>
+                          </li>
 
-                              <li className="menu-item" >
-                              <Link to="show-project">Show project</Link>
-                              </li>
+                          <li className="menu-item" >
+                          <Link to="show-project">Show project</Link>
+                          </li>
+
+                            </ul>
+                        </li>
+
+                      <li className="menu-item" >
+                           <Link to="/contacts" className=""> <span><i className="material-icons fs-16">input</i>Add lead</span>
+                           </Link>
+                       </li>
 
 
-                              </ul>
-                            </li>
-                            </>
+                  <li className="menu-item">
+                    <Link to="#" className="has-chevron"> <span><i className="material-icons fs-16">input</i>Reports</span>
+                    </Link>
+                    <ul id="form-elements" className="collapse" aria-labelledby="form-elements" data-parent="#side-nav-accordion">
+
+                    <li className="menu-item" >
+                    <Link to="/lead-report">
+                    Lead reports
+                    </Link>
+                    </li>
+
+                    <li className="menu-item" >
+                    <Link to="/followup-report">
+                    Followup reports
+                    </Link>
+                    </li>
+                    </ul>
+                  </li>
+    </>
 
 }
 
